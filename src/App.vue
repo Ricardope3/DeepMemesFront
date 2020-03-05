@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <AppBar/>
     <div class="flex flex-col h-screen">
       <div class="bg-blue-500 flex-1 flex overflow-y-hidden">
         <div class="sidebar bg-gray-300 w-1/4 flex-none">Sidebar</div>
@@ -13,12 +14,14 @@
 </template>
 
 <script>
+import AppBar from './components/AppBar.vue';
 import MemeCard from "./components/MemeCard.vue";
 
 export default {
   name: "App",
   components: {
-    MemeCard
+    AppBar,
+    MemeCard,
   },
   data: () => ({
     meme: {
