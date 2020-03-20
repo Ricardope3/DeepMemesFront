@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <AppBar />
     <div class="flex flex-col h-screen">
-      <div class="bg-blue-500 flex-1 flex">
-        <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 flex-none md:flex xsm:hidden">Sidebar</div>
-        <div class="content-area bg-gray-200 flex-1 overflow-y-auto">
+    <AppBar class />
+      <div class="bg-blue-500 flex-1 flex overflow-y-hidden">
+        <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 md:flex xsm:hidden ">Sidebar</div>
+        <div class="content-area bg-gray-200  flex-1 overflow-y-auto">
           <MemeCard :meme="meme" />
         </div>
-        <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 flex-none md:flex xsm:hidden">Sidebar</div>
+        <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 flex-none md:flex xsm:hidden ">Sidebar</div>
       </div>
     </div>
   </div>

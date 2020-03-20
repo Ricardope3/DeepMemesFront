@@ -1,11 +1,26 @@
 <template>
-  <div class="shadow-xl bg-white rounded-lg m-16 p-6">
-    <div class="title-bar flex pb-4">
-      <img :src="meme.profileUrl" class="rounded-full md:w-12 md:h-12 xsm:h-10 flex-initial xsm:w-10 mr-2" />
-      <div class="flex-auto pt-3 pl-3 text-lg">{{meme.profileName}}</div>
+  <div class="flex flex-col shadow-xl bg-white rounded-xlg xl:m-20 lg:m-10 sm:m-5 xsm:m-3 sm:p-6 xsm:p-4">
+    <div class="title-bar flex pb-4 flex items-center">
+      <img
+        :src="meme.profileUrl"
+        class="rounded-full overflow-x-auto sm:w-12 sm:h-12 xsm:w-10 xsm:h-10"
+      />
+      <div class="p-3 text-lg flex-1">{{meme.profileName}}</div>
     </div>
-    <div class="memeImage">
-      <img :src="meme.memeUrl" class="rounded-lg shadow-xl" />
+    <div class="memeImage self-center shadow-md rounded-xlg">
+      <img :src="meme.memeUrl" class="rounded-xlg shadow-xl" />
+    </div>
+    <div class="flex">
+      <div class="sm:px-5 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <font-awesome-icon icon="heart" class="text-indigo-700 sm:text-3xl xsm:text-lg " />
+      </div>
+      <div class="sm:px-10 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <font-awesome-icon icon="heart-broken" class="text-indigo-700  sm:text-3xl xsm:text-lg" />
+      </div>
+      <div class="flex-1"></div>
+      <div class="sm:px-10 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <font-awesome-icon icon="comments" class="text-indigo-700  sm:text-3xl xsm:text-lg" />
+      </div>
     </div>
     <div class="like-bar flex"></div>
   </div>
