@@ -11,7 +11,9 @@
         <h1 class="text-white text-center text-2xl">Deep Memes</h1>
     </div>
     <div class="flex flex-row w-1/3">
-      <div class="w-1/3"><img class="w-8 center-image" src="../assets/icons/search.svg"/>
+      <div class="w-1/3">
+      <img v-if="isHidden" class="w-8 center-image" src="../assets/icons/search.svg" v-on:click="isHidden = false"/>
+      <input v-if="!isHidden" type="text" placeholder="Search..">
     </div>
       <div class="w-1/3"><img class="w-8 center-image" src="../assets/icons/account.svg"/>
     </div>
@@ -23,7 +25,10 @@
 export default {
     name: 'AppBar',
     components: {
-  }
+  },
+data: () => ({    
+  isHidden: true
+  }),
 }
 </script>
 
