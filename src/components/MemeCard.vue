@@ -4,7 +4,7 @@
       <img
         :src="meme.profileUrl"
         class="rounded-full overflow-x-auto sm:w-12 sm:h-12 xsm:w-10 xsm:h-10"
-      />
+      />~
       <div class="p-3 text-lg flex-1">{{meme.profileName}}</div>
     </div>
     <div class="memeImage self-center shadow-md rounded-xlg">
