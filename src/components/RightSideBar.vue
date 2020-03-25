@@ -4,17 +4,17 @@
         <h3 class="text-center font-bold text-2xl mt-6">Who to Follow?</h3>
         <div class="flex flex-row ml-auto mt-4 w-11/12 lg:justify-start md:justify-center">
             <!--V-for para buscar 3 elementos random-->
-            <img class="w-12" src="../assets/icons/account.svg">
+            <img class="w-12 rounded-full mr-2" src="../assets/demo/user1.jpg">
             <a href="#" class="pt-2 hover: lg:inline-block md:hidden">Juan Quirino</a>
         </div>
         <div class="flex flex-row ml-auto mt-4 w-11/12 lg:justify-start md:justify-center">
             <!--V-for para buscar 3 elementos random-->
-            <img class="w-12" src="../assets/icons/account.svg">
+            <img class="w-12 rounded-full mr-2" src="../assets/demo/user2.jpg">
             <a href="#" class="pt-2 lg:inline-block md:hidden">Ricardo Espinoza</a>
         </div>
         <div class="flex flex-row ml-auto mt-4 w-11/12 lg:justify-start md:justify-center">
             <!--V-for para buscar 3 elementos random-->
-            <img class="w-12 origin-center" src="../assets/icons/account.svg">
+            <img class="w-12 rounded-full mr-2" src="../assets/demo/user3.jpg">
             <a href="#" class="pt-2 lg:inline-block md:hidden ">Carlos Cabello</a>
         </div>
     </div>
