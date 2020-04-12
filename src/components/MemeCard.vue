@@ -5,7 +5,7 @@
         src="https://images-na.ssl-images-amazon.com/images/I/31xIqOqB4OL._SY355_.jpg"
         class="rounded-full overflow-x-auto sm:w-12 sm:h-12 xsm:w-10 xsm:h-10"
       />
-      <div class="p-3 text-lg flex-1">Cat memes for a brighter future</div>
+      <div class="p-3 text-lg flex-1">LMAO</div>
     </div>
     <div class="memeImage self-center shadow-md rounded-xlg">
       <img :src="meme" class="rounded-xlg shadow-xl" />

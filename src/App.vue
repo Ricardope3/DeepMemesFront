@@ -5,7 +5,7 @@
       <div class="bg-blue-500 flex-1 flex overflow-y-hidden">
         <LeftSideBar />
         <div class="content-area bg-gray-200 flex-1 overflow-y-auto">
-          <MemeCard v-for="meme in memes" :key="meme" :meme="meme" />
+          <MemeCard v-for="meme in allMemes" :key="meme" :meme="meme" />
         </div>
         <RightSideBar />
       </div>
@@ -18,9 +18,15 @@ import AppBar from "./components/AppBar.vue";
 import MemeCard from "./components/MemeCard.vue";
 import LeftSideBar from "./components/LeftSideBar.vue";
 import RightSideBar from "./components/RightSideBar.vue";
-const axios = require("axios");
+import {mapGetters,mapActions} from "vuex";
 export default {
   name: "App",
+  methods : {
+    ...mapActions(['fetchMemes']),
+  },
+  computed: {
+    ...mapGetters(['allMemes']),
+  },
   components: {
     AppBar,
     MemeCard,
@@ -30,21 +36,15 @@ export default {
   data: () => ({
     memes: []
   }),
-  mounted() {
-    axios
-      .get("http://localhost:8080/submission/relatedto?tags=cats")
-      .then(response => (this.memes=response.data));
+  created() {
+    this.fetchMemes()
   }
+
 };
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+
 </style>
 
 
