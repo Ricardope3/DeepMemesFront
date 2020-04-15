@@ -5,7 +5,7 @@
       <div class="bg-blue-500 flex-1 flex overflow-y-hidden">
         <LeftSideBar />
         <div class="content-area bg-gray-200 flex-1 overflow-y-auto">
-          <MemeCard v-for="meme in allMemes" :key="meme" :meme="meme" />
+            <router-view/>
         </div>
         <RightSideBar />
       </div>
@@ -15,36 +15,19 @@
 
 <script>
 import AppBar from "./components/AppBar.vue";
-import MemeCard from "./components/MemeCard.vue";
 import LeftSideBar from "./components/LeftSideBar.vue";
 import RightSideBar from "./components/RightSideBar.vue";
-import {mapGetters,mapActions} from "vuex";
 export default {
   name: "App",
-  methods : {
-    ...mapActions(['fetchMemes']),
-  },
-  computed: {
-    ...mapGetters(['allMemes']),
-  },
   components: {
     AppBar,
-    MemeCard,
     LeftSideBar,
     RightSideBar
   },
-  data: () => ({
-    memes: []
-  }),
-  created() {
-    this.fetchMemes()
-  }
-
 };
 </script>
 
 <style>
-
 </style>
 
 

@@ -18,6 +18,8 @@
       <div class="w-1/3"><img class="w-8 center-image" src="../assets/icons/account.svg"/>
     </div>
     </div>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/Memes">Memes</router-link>
   </div>
 </template>
 
