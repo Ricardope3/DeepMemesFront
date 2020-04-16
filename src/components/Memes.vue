@@ -9,7 +9,7 @@ import MemeCard from "../components/MemeCard.vue";
 import {mapGetters,mapActions} from "vuex";
 
 export default {
-    name: 'Memes',
+    name: 'memes',
     components: {
         MemeCard,
   },
