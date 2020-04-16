@@ -22,7 +22,11 @@
         />
         <input v-if="!isHidden" type="text" placeholder="Search.." />
       </div>
+<<<<<<< HEAD
       <router-link to="/profile"  tag="div" router class="w-1/3 hover:shadow-2xl">
+=======
+      <router-link to="/profile"  tag="div" router class="w-1/3 profile">
+>>>>>>> b9921931612ebc3a1293f962b0a040bf8ab6da01
         <img  class="w-8 center-image " src="../assets/icons/account.svg" />
       </router-link>
     </div>
@@ -43,5 +47,8 @@ export default {
 .center-image {
   margin-left: auto;
   margin-right: auto;
+}
+.profile img:hover {
+  opacity: .5;
 }
 </style>
