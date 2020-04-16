@@ -22,7 +22,7 @@
         />
         <input v-if="!isHidden" type="text" placeholder="Search.." />
       </div>
-      <router-link to="/profile"  tag="div" router class="w-1/3">
+      <router-link to="/profile"  tag="div" router class="w-1/3 hover:shadow-2xl">
         <img  class="w-8 center-image " src="../assets/icons/account.svg" />
       </router-link>
     </div>
