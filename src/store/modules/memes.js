@@ -6,6 +6,14 @@ const actions = {
     async fetchMemes({ commit }) {
         const response = await axios.get("http://localhost:8080/submission/relatedto?tags=boomer");
         commit('setMemes', response.data);
+    },
+    async fetchRandomMemes({ commit }) {
+        const response = await axios.get("http://localhost:8080/submission/random");
+        commit('setMemes', response.data);
+    },
+    async postMeme({ commit }) {
+        const response = await axios.post("http://localhost:8080/submission");
+        commit('setMemes', response.data);
     }
 };
 const mutations = {
