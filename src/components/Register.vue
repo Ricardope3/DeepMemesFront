@@ -1,16 +1,34 @@
 <template>
-  <div>
+  <div class="text-center mt-4">
     <div v-if="error">{{error.message}}</div>
-    <form @submit.prevent="onRegister">
-      <h1>Register</h1>
-      <div class="email">
-        <input type="email" placeholder="email" v-model="email" />
-      </div>
-      <div class="password">
-        <input type="password" placeholder="password" v-model="password" />
-      </div>
-      <button type="submit">Register</button>
-    </form>
+    <div v-if="isSignUp">
+      <form @submit.prevent="onRegister">
+        <h1 class="text-xl mb-4">Register</h1>
+        <div class="email mb-2">
+          <input class="p-1 rounded-lg" type="email" placeholder="email" v-model="email" />
+        </div>
+        <div class="password">
+          <input class="p-1 rounded-lg" type="password" placeholder="password" v-model="password" />
+        </div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg" type="submit">Register</button>
+      </form>
+      <p>You already have an account? <span class="text-blue-500 hover:text-blue-700" v-on:click="changeMode">login</span></p>
+    </div>
+
+    <div v-if="!isSignUp">
+      <form @submit.prevent="onLogin">
+        <h1 class="text-xl mb-4">Login</h1>
+        <div class="email mb-2">
+          <input class="p-1 rounded-lg" type="email" placeholder="email" v-model="email" />
+        </div>
+        <div class="password">
+          <input class="p-1 rounded-lg" type="password" placeholder="password" v-model="password" />
+        </div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg" type="submit">Login</button>
+      </form>
+      <p>You dont have an account? <span class="text-blue-500 hover:text-blue-700" v-on:click="changeMode">register</span></p>
+
+    </div>
 
     <br />
     <br />Log Out
@@ -19,16 +37,7 @@
     <br />
     <br />
 
-    <form @submit.prevent="onLogin">
-      <h1>Login</h1>
-      <div class="email">
-        <input type="email" placeholder="email" v-model="email" />
-      </div>
-      <div class="password">
-        <input type="password" placeholder="password" v-model="password" />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+   
   </div>
 </template>
 
@@ -68,17 +77,26 @@ export default {
         console.log(error);
         this.error = error;
       }
+    },
+    changeMode(){
+      this.isSignUp = !this.isSignUp;
+      this.email = "";
+      this.password = "";
     }
   },
   data() {
     return {
       email: "",
       password: "",
-      error: ""
+      error: "",
+      isSignUp: true
     };
   }
 };
 </script>
 
 <style>
+span {
+  cursor: pointer;
+}
 </style>
