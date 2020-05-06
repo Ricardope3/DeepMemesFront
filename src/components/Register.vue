@@ -1,6 +1,6 @@
 <template>
   <div class="text-center mt-4">
-    <div v-if="error">{{error.message}}</div>
+    <div class="text-red-400" v-if="error">{{error.message}}</div>
     <div v-if="isSignUp">
       <form @submit.prevent="onRegister">
         <h1 class="text-xl mb-4">Register</h1>
@@ -10,24 +10,42 @@
         <div class="password">
           <input class="p-1 rounded-lg" type="password" placeholder="password" v-model="password" />
         </div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg" type="submit">Register</button>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg"
+          type="submit"
+        >Register</button>
       </form>
-      <p>You already have an account? <span class="text-blue-500 hover:text-blue-700" v-on:click="changeMode">login</span></p>
+      <p>
+        You already have an account?
+        <span
+          class="text-blue-500 hover:text-blue-700"
+          v-on:click="changeMode"
+        >login</span>
+      </p>
     </div>
 
     <div v-if="!isSignUp">
       <form @submit.prevent="onLogin">
         <h1 class="text-xl mb-4">Login</h1>
+        <!-- <div class="text-red-400" v-if="error">{{error.message}}</div> -->
         <div class="email mb-2">
           <input class="p-1 rounded-lg" type="email" placeholder="email" v-model="email" />
         </div>
         <div class="password">
           <input class="p-1 rounded-lg" type="password" placeholder="password" v-model="password" />
         </div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg" type="submit">Login</button>
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg"
+          type="submit"
+        >Login</button>
       </form>
-      <p>You dont have an account? <span class="text-blue-500 hover:text-blue-700" v-on:click="changeMode">register</span></p>
-
+      <p>
+        You dont have an account?
+        <span
+          class="text-blue-500 hover:text-blue-700"
+          v-on:click="changeMode"
+        >register</span>
+      </p>
     </div>
 
     <br />
@@ -36,59 +54,57 @@
 
     <br />
     <br />
-
-   
   </div>
 </template>
 
 <script>
-import * as firebase from "firebase/app";
-import "firebase/auth";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "register",
   mounted() {},
   methods: {
+    ...mapActions(["login"]),
+    ...mapActions(["register"]),
+    ...mapActions(["logout"]),
+    onLogin() {
+      this.login({ email: this.email, password: this.password }).then(() => {
+        if (!this.error) {
+          this.$router.replace({ name: "memes" });
+        }
+        console.log(this.error);
+      }).catch(()=>this.error= this.getError);
+    },
     onRegister() {
-      try {
-        const user = firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password);
-        console.log(user);
-        this.$router.replace({ name: "memes" });
-      } catch (error) {
-        this.error = error;
-      }
+      this.register({ email: this.email, password: this.password }).then(() => {
+        if (!this.error) {
+          this.$router.replace({ name: "memes" });
+        }
+        console.log(this.error);
+      }).catch(()=>this.error= this.getError);
     },
     onLogOut() {
-      try {
-        const data = firebase.auth().signOut();
-        console.log(data);
+      this.logout().then(() => {
         this.$router.replace({ name: "login" });
-      } catch (error) {
-        this.error = error;
-        console.log(error);
-      }
+      });
     },
-    onLogin(){
-      try {
-        const user = firebase.auth().signInWithEmailAndPassword(this.email,this.password);
-        console.log(user);
-      } catch (error) {
-        console.log(error);
-        this.error = error;
-      }
-    },
-    changeMode(){
+
+    changeMode() {
       this.isSignUp = !this.isSignUp;
       this.email = "";
       this.password = "";
-    }
+    },
+    ...mapActions(["login", "register", "logout"])
+  },
+
+  computed: {
+    ...mapGetters(["getUser"]),
+    ...mapGetters(["getError"])
   },
   data() {
     return {
       email: "",
       password: "",
-      error: "",
+      error: this.getError,
       isSignUp: true
     };
   }
