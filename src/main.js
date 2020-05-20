@@ -2,12 +2,12 @@ import Vue from 'vue'
 import App from './App.vue'
 import "./assets/css/tailwind.css"
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faHeart , faHeartBroken,faComments} from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faHeartBroken, faComments } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import store from './store';
 import router from './router'
 import firebase from 'firebase/app';
-
+import authStore from "./store/modules/auth"
 const firebaseConfig = {
   apiKey: "AIzaSyDrz1eHFs0puJKqHGHEGSn26QtimniOyzc",
   authDomain: "deep-memes.firebaseapp.com",
@@ -19,7 +19,7 @@ const firebaseConfig = {
   measurementId: "G-FTG4GC85GF"
 };
 
-library.add(faHeart,faHeartBroken,faComments)
+library.add(faHeart, faHeartBroken, faComments)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 firebase.initializeApp(firebaseConfig);
@@ -28,8 +28,19 @@ firebase.initializeApp(firebaseConfig);
 
 Vue.config.productionTip = false
 
-new Vue({
-  store,
-  router,
-  render: h => h(App)
-}).$mount('#app')
+
+let app;
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    authStore.state.user = { id: user.uid, email: user.email }
+  }
+  if (!app) {
+    app = new Vue({
+      store,
+      router,
+      render: h => h(App)
+    }).$mount('#app')
+
+  }
+})

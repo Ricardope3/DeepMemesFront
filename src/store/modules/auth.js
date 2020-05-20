@@ -2,7 +2,10 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 
 const state = { user: {}, error: {} };
-const getters = { getUser: () => state.user, getError: () => state.error };
+const getters = {
+    getUser: () => firebase.auth().currentUser
+    , getError: () => state.error
+};
 const actions = {
     async login({ commit }, data) {
         try {
@@ -39,7 +42,6 @@ const actions = {
         } catch (error) {
             commit('setError', error);
             throw Error()
-
         }
     },
 

@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Profile from '../components/Profile.vue'
 import Memes from '../components/Memes.vue'
 import Register from '../components/Register'
+import * as firebase from "firebase/app";
+import "firebase/auth";
 
 Vue.use(VueRouter)
 
@@ -11,19 +13,23 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: Profile,
-    // meta: { requireAuth: true }
+    meta: { requiresAuth: true }
   },
   {
-    path: '/memes',
+    path: '/',
     name: 'memes',
-    component: Memes, 
-    // meta: { requireAuth: true }
+    component: Memes,
+    meta: { requiresAuth: true }
   },
   {
     path: '/register',
     name: 'register',
     component: Register,
-    // meta: { guestOnly: true },
+    meta: { guestOnly: true },
+  },
+  {
+    path: '*',
+    component: Register
   },
 
 ]
@@ -35,14 +41,25 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  const requireAuth = to.matched.some(record => record.meta.requiresAuth)
+  let guestOnly = to.matched.some(record => record.meta.guestOnly)
+  let currentUser = firebase.auth().currentUser
 
-  // let currentUser = auth.user()
-  // let requireAuth = to.matched.some(record => record.meta.requireAuth)
-  // let guestOnly = to.matched.some(record => record.meta.guestOnly)
-
-  // if (requireAuth && !currentUser) next('login')
-  // else if (guestOnly && currentUser) next('memes')
+  console.log(currentUser)
+  if (requireAuth && !currentUser) {
+    console.log("Registrate compa")
+    next('register')
+  }
+  else if(requireAuth && currentUser){
+    console.log("A wachar memes")
+    next()
+  }
+  else if (guestOnly && currentUser) {
+    console.log("Tu ya tienes cuenta cabron")
+    next({name:'memes'})
+  }
   next()
 })
+//
 
 export default router
