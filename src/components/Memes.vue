@@ -1,7 +1,7 @@
 <template>
 <div>
-    <MemeCard v-for="meme in allMemes" :key="meme" :meme="meme" />
-    
+    <MemeCard v-for="meme in allMemes" :key="meme.link" :meme="meme" />
+
 </div>
 </template>
 

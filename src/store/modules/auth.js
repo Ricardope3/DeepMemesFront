@@ -3,8 +3,8 @@ import "firebase/auth";
 
 const state = { user: {}, error: {} };
 const getters = {
-    getUser: () => firebase.auth().currentUser
-    , getError: () => state.error
+    getUser: () => firebase.auth().currentUser,
+    getError: () => state.error
 };
 const actions = {
     async login({ commit }, data) {
