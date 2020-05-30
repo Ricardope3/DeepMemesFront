@@ -8,6 +8,7 @@ import store from './store';
 import router from './router'
 import firebase from 'firebase/app';
 import authStore from "./store/modules/auth"
+import VModal from 'vue-js-modal'
 const firebaseConfig = {
   apiKey: "AIzaSyDrz1eHFs0puJKqHGHEGSn26QtimniOyzc",
   authDomain: "deep-memes.firebaseapp.com",
@@ -18,7 +19,7 @@ const firebaseConfig = {
   appId: "1:664277891791:web:41bcd3c42f66e286ae95ba",
   measurementId: "G-FTG4GC85GF"
 };
-
+Vue.use(VModal)
 library.add(faHeart, faHeartBroken, faComments)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

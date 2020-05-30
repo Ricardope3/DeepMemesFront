@@ -45,7 +45,6 @@ router.beforeEach((to, from, next) => {
   let guestOnly = to.matched.some(record => record.meta.guestOnly)
   let currentUser = firebase.auth().currentUser
 
-  console.log(currentUser)
   if (requireAuth && !currentUser) {
     console.log("Registrate compa")
     next('register')

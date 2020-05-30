@@ -4,11 +4,17 @@
     <div v-if="isSignUp">
       <form @submit.prevent="onRegister">
         <h1 class="text-xl mb-4">Register</h1>
+        <div class="name mb-2">
+          <input class="p-1 rounded-lg" placeholder="name" v-model="name" />
+        </div>
         <div class="email mb-2">
           <input class="p-1 rounded-lg" type="email" placeholder="email" v-model="email" />
         </div>
-        <div class="password">
+        <div class="password mb-2">
           <input class="p-1 rounded-lg" type="password" placeholder="password" v-model="password" />
+        </div>
+        <div class="link mb-2">
+          <input class="p-1 rounded-lg" placeholder="link to profile picture" v-model="link" />
         </div>
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 mt-4 mb-2 rounded-2xlg"
@@ -66,21 +72,30 @@ export default {
     ...mapActions(["login"]),
     ...mapActions(["register"]),
     ...mapActions(["logout"]),
+    ...mapActions(["createUserMongo"]),
     onLogin() {
-      this.login({ email: this.email, password: this.password }).then(() => {
-        if (!this.error) {
-          this.$router.replace({ name: "memes" });
-        }
-        console.log(this.error);
-      }).catch(()=>this.error= this.getError);
+      this.login({ email: this.email, password: this.password })
+        .then(() => {
+          if (!this.error) {
+            this.$router.replace({ name: "memes" });
+          }
+          console.log(this.error);
+        })
+        .catch(() => (this.error = this.getError));
     },
-    onRegister() {
-      this.register({ email: this.email, password: this.password }).then(() => {
-        if (!this.error) {
-          this.$router.replace({ name: "memes" });
-        }
-        console.log(this.error);
-      }).catch(()=>this.error= this.getError);
+    onRegister(){
+
+      
+      this.register({ email: this.email, password: this.password })
+        .then(() => {
+          if (!this.error) {
+            this.createUserMongo({email: this.email, profilePictureLink: this.link, username: this.name })
+            this.$router.replace({ name: "memes" });
+          }
+          console.log(this.error);
+        })
+        .catch(() => (this.error = this.getError));
+        
     },
     onLogOut() {
       this.logout().then(() => {
@@ -102,8 +117,10 @@ export default {
   },
   data() {
     return {
+      name: "",
       email: "",
       password: "",
+      link: "",
       error: this.getError,
       isSignUp: true
     };
