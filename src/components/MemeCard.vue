@@ -76,7 +76,7 @@ export default {
     ...mapActions(["uploadComment"]),
     ...mapActions(["updateUserTags"]),
     async like() {
-      this.meme.like++
+      this.meme.likes++
       await this.reaction({
         uidMeme: this.meme.id,
         type: 0,
@@ -85,7 +85,7 @@ export default {
       });
     },
     async dislike() {
-      this.meme.dislike++
+      this.meme.dislikes++
       await this.reaction({
         uidMeme: this.meme.id,
         type: 1,
@@ -93,6 +93,7 @@ export default {
       });
     },
     comment() {
+      this.meme.comments.push(this.comentario);
       this.uploadComment({ uidMeme: this.meme.id, comment: this.comentario });
     },
     async getImageUrl(email) {
