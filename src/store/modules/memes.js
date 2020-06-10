@@ -6,12 +6,14 @@ const actions = {
     async fetchMemes({ commit }) {
         let tagsCSV = ""
         if (state.tags.length === 0) {
+            console.log("RANDOM")
             const response = await axios.get(`http://localhost:8080/getRandom`);
             commit('setMemes', response.data);
         } else {
             for (let index in state.tags) {
                 tagsCSV += `${state.tags[index]},`
             }
+            console.log("TAGS")
             const response = await axios.get(`http://localhost:8080/getRelatedTo?tags=${tagsCSV}`);
             commit('setMemes', response.data);
         }

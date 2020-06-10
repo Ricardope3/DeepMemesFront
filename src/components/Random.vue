@@ -24,7 +24,7 @@ export default {
     memes: []
   }),
   created() {
-    this.fetchMemes()
+    this.fetchRandomMemes()
   }
   
 }
