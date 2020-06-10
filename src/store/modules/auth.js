@@ -12,7 +12,7 @@ const actions = {
             const response = await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
             commit('setUser', { id: response.user.uid, email: response.user.email });
             localStorage.token = response.user.refreshToken;
-
+            location.reload(true);
         } catch (error) {
             console.log(error);
             commit('setError', error);
