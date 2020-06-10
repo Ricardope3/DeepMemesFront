@@ -10,11 +10,13 @@ const actions = {
         let tagsCSV = ""
         if (state.tags.length === 0) {
             console.log("RANDOM")
-            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
+            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/getRandom`, {
                 useCredentails: true,
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': 'http://ec2-54-147-77-7.compute-1.amazonaws.com',
                     'Access-Control-Allow-Methods': '*',
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Credentials':true
                 }
             });
             commit('setMemes', response.data);
@@ -23,32 +25,32 @@ const actions = {
                 tagsCSV += `${state.tags[index]},`
             }
             console.log("TAGS")
-            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getRelatedTo?tags=${tagsCSV}`, {
+            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/getRelatedTo?tags=${tagsCSV}`, {
                 useCredentails: true,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': '*',
+                    'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
                 }
             });
             commit('setMemes', response.data);
         }
     },
     async fetchRandomMemes({ commit }) {
-        const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
+        const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/getRandom`, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         });
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {
-        const response = await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/submission`, {
+        const response = await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/submission`, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         });
         commit('setMemes', response.data);
@@ -56,43 +58,43 @@ const actions = {
     // { commit },
     async createUserMongo({ commit }, body) {
 
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createUser`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/createUser`, body, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         });
         user.state.user.link = body.profilePictureLink
         commit.lmaoIgnoraEsto
     },
     async createMeme({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createMeme`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/createMeme`, body, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         });
         commit.lmaoIgnoraEsto
     },
     async getProfilePicture({ commit }, email) {
-        const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getUser?email=${email}`, {
+        const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/getUser?email=${email}`, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         })
         commit.lmaoIgnoraEsto
         return response.data.profilePictureLink
     },
     async reaction({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/reaction`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/reaction`, body, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         })
         if (body.type === 0 && body.tags) {
@@ -102,11 +104,11 @@ const actions = {
         }
     },
     async uploadComment({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createComment`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com:8080/createComment`, body, {
             useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': '*',
+                'Access-Control-Allow-Methods': '*', 'Content-Type': 'application/json'
             }
         })
         commit.lmaoIgnoraEsto
