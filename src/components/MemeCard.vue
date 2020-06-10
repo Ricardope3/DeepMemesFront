@@ -1,32 +1,34 @@
 <template>
   <div
-    class="flex flex-col shadow-xl bg-white rounded-xlg xl:m-20 lg:m-10 sm:m-5 xsm:m-3 sm:p-6 xsm:p-4"
+    class="flex flex-col shadow-xl bg-white rounded-xlg m-8 sm:p-6 xsm:p-4 w-5/6 ml-auto mr-auto"
   >
-    <div class="title-bar flex pb-4 flex items-center">
+    <div class="title-bar flex pb-4 flex items-center border-b-4 border-gray-500">
       <img
         :src="this.profilePicture"
         class="rounded-full overflow-x-auto sm:w-12 sm:h-12 xsm:w-10 xsm:h-10"
       />
-      <div class="p-3 text-lg flex-1">{{meme.title}}</div>
+      <div class="p-3 text-xl flex-1">{{meme.title}}</div>
     </div>
-    <div class="memeImage self-center shadow-md rounded-xlg">
+    <div class="memeImage self-center shadow-md rounded-xlg mt-2">
       <img :src="meme.link" class="rounded-xlg shadow-xl" />
     </div>
     <div class="flex">
       <button @click.once="like"> 
-        <div class="sm:px-5 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <div class="sm:pt-4 px-4 xsm:pt-3">
+          <span class="pb-2">
           {{meme.likes}}
+          </span>
           <font-awesome-icon icon="heart" class="text-indigo-700 sm:text-3xl xsm:text-lg" />
         </div>
       </button>
       <button @click.once="dislike">
-        <div class="sm:px-10 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <div class="px-4 sm:pt-4 xsm:pt-3">
           {{meme.dislikes}}<font-awesome-icon icon="heart-broken" class="text-indigo-700 sm:text-3xl xsm:text-lg" />
         </div>
       </button>
       <div class="flex-1"></div>
       <button @click="show">
-        <div class="sm:px-10 sm:pt-4 xsm:px-3 xsm:pt-3">
+        <div class="px-3 sm:pt-4 xsm:pt-3">
           <modal :name="this.meme.link" :width="300" :height="180">
             <div>
               <h1 class="text-xl mb-4">Upload Comment</h1>
@@ -45,7 +47,14 @@
         </div>
       </button>
     </div>
-    <div class="like-bar flex"></div>
+    <div>
+      <p class="text-lg text-center w-full mt-2 mb-2">Comments</p>
+      <ul id="example-1">
+        <li class="bg-gray-300 w-full mt-3 mb-3 m-auto p-2 rounded-lg" v-for="comment in meme.comments" :key="comment.index">
+          {{ comment }}
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 

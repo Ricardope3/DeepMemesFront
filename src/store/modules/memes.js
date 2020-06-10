@@ -17,7 +17,7 @@ const actions = {
         }
     },
     async fetchRandomMemes({ commit }) {
-        const response = await axios.get("http://localhost:8080/submission/random");
+        const response = await axios.get("http://localhost:8080/getRandom");
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {

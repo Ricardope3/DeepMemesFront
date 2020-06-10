@@ -15,7 +15,7 @@ export default {
         MemeCard,
   },
     methods : {
-        ...mapActions(['fetchRandomMemes']),
+        ...mapActions(['fetchMemes']),
     },
     computed: {
         ...mapGetters(['allMemes']),
@@ -24,7 +24,7 @@ export default {
     memes: []
   }),
   created() {
-    this.fetchRandomMemes()
+    this.fetchMemes()
   }
   
 }

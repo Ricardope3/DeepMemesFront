@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Profile from '../components/Profile.vue'
 import Memes from '../components/Memes.vue'
 import Register from '../components/Register'
+import Random from '../components/Random'
 import * as firebase from "firebase/app";
 import "firebase/auth";
 
@@ -30,6 +31,10 @@ const routes = [
   {
     path: '*',
     component: Register
+  },
+  {
+    path: '/random',
+    component: Random
   },
 
 ]

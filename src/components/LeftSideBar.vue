@@ -7,15 +7,10 @@
         class="inline-block h-12 bg-gray-600 px-8 text-white hover:bg-gray-800 mt-6 rounded-xlg"
       >For You</router-link>
       <router-link
-        to="/foo"
+        to="/random"
         tag="button"
         class="inline-block h-12 bg-gray-600 px-8 text-white hover:bg-gray-800 mt-6 rounded-xlg"
-      >Popular</router-link>
-      <router-link
-        to="/foo"
-        tag="button"
-        class="inline-block h-12 bg-gray-600 px-8 text-white hover:bg-gray-800 mt-6 rounded-xlg"
-      >Following</router-link>
+      >Random</router-link>
     </div>
   </div>
 </template>
