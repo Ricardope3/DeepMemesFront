@@ -11,7 +11,7 @@ const actions = {
         let tagsCSV = ""
         if (state.tags.length === 0) {
             console.log("RANDOM")
-            const response = await axios.get(`${url}/getRandom`, {
+            const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -23,7 +23,7 @@ const actions = {
                 tagsCSV += `${state.tags[index]},`
             }
             console.log("TAGS")
-            const response = await axios.get(`${url}/getRelatedTo?tags=${tagsCSV}`, {
+            const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRelatedTo?tags=${tagsCSV}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -33,7 +33,7 @@ const actions = {
         }
     },
     async fetchRandomMemes({ commit }) {
-        const response = await axios.get(`${url}/getRandom`, {
+        const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -42,7 +42,7 @@ const actions = {
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {
-        const response = await axios.post(`${url}/submission`, {
+        const response = await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/submission`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -53,7 +53,7 @@ const actions = {
     // { commit },
     async createUserMongo({ commit }, body) {
 
-        await axios.post(`${url}/createUser`, body, {
+        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createUser`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -63,7 +63,7 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async createMeme({ commit }, body) {
-        await axios.post(`${url}/createMeme`, body, {
+        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createMeme`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -72,7 +72,7 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async getProfilePicture({ commit }, email) {
-        const response = await axios.get(`${url}/getUser?email=${email}`, {
+        const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getUser?email=${email}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -82,7 +82,7 @@ const actions = {
         return response.data.profilePictureLink
     },
     async reaction({ commit }, body) {
-        await axios.post(`${url}/reaction`, body, {
+        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/reaction`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -95,7 +95,7 @@ const actions = {
         }
     },
     async uploadComment({ commit }, body) {
-        await axios.post(`${url}/createComment`, body, {
+        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createComment`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
