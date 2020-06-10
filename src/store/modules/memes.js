@@ -1,7 +1,10 @@
 import axios from 'axios';
 import user from './auth'
 const state = { memes: [], tags: localStorage.tags ? JSON.parse(localStorage.tags) : [] };
-const getters = { allMemes: () => state.memes, };
+const getters = { 
+    allMemes: () => state.memes, 
+    getUserTags: () => state.tags
+};
 const actions = {
     async fetchMemes({ commit }) {
         let tagsCSV = ""
