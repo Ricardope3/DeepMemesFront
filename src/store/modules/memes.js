@@ -10,7 +10,8 @@ const actions = {
         let tagsCSV = ""
         if (state.tags.length === 0) {
             console.log("RANDOM")
-            const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
+            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
+                useCredentails: true,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -22,7 +23,8 @@ const actions = {
                 tagsCSV += `${state.tags[index]},`
             }
             console.log("TAGS")
-            const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRelatedTo?tags=${tagsCSV}`, {
+            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getRelatedTo?tags=${tagsCSV}`, {
+                useCredentails: true,
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -33,6 +35,7 @@ const actions = {
     },
     async fetchRandomMemes({ commit }) {
         const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getRandom`, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -41,7 +44,8 @@ const actions = {
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {
-        const response = await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/submission`, {
+        const response = await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/submission`, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -52,7 +56,8 @@ const actions = {
     // { commit },
     async createUserMongo({ commit }, body) {
 
-        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createUser`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createUser`, body, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -62,7 +67,8 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async createMeme({ commit }, body) {
-        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createMeme`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createMeme`, body, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -71,7 +77,8 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async getProfilePicture({ commit }, email) {
-        const response = await axios.get(`http://ec2-54-147-77-7.compute-1.amazonaws.com/getUser?email=${email}`, {
+        const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/getUser?email=${email}`, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -81,7 +88,8 @@ const actions = {
         return response.data.profilePictureLink
     },
     async reaction({ commit }, body) {
-        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/reaction`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/reaction`, body, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -94,7 +102,8 @@ const actions = {
         }
     },
     async uploadComment({ commit }, body) {
-        await axios.post(`http://ec2-54-147-77-7.compute-1.amazonaws.com/createComment`, body, {
+        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-54-147-77-7.compute-1.amazonaws.com/createComment`, body, {
+            useCredentails: true,
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
