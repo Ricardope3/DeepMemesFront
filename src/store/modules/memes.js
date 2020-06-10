@@ -1,5 +1,6 @@
 import axios from 'axios';
 import user from './auth'
+import url from './url.js'
 const state = { memes: [], tags: localStorage.tags ? JSON.parse(localStorage.tags) : [] };
 const getters = {
     allMemes: () => state.memes,
@@ -10,7 +11,7 @@ const actions = {
         let tagsCSV = ""
         if (state.tags.length === 0) {
             console.log("RANDOM")
-            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRandom`, {
+            const response = await axios.get(`${url}/getRandom`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -22,7 +23,7 @@ const actions = {
                 tagsCSV += `${state.tags[index]},`
             }
             console.log("TAGS")
-            const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRelatedTo?tags=${tagsCSV}`, {
+            const response = await axios.get(`${url}/getRelatedTo?tags=${tagsCSV}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
@@ -32,7 +33,7 @@ const actions = {
         }
     },
     async fetchRandomMemes({ commit }) {
-        const response = await axios.get("https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRandom", {
+        const response = await axios.get(`${url}/getRandom`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -41,7 +42,7 @@ const actions = {
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {
-        const response = await axios.post("https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/submission", {
+        const response = await axios.post(`${url}/submission`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -52,7 +53,7 @@ const actions = {
     // { commit },
     async createUserMongo({ commit }, body) {
 
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createUser`, body, {
+        await axios.post(`${url}/createUser`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -62,7 +63,7 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async createMeme({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createMeme`, body, {
+        await axios.post(`${url}/createMeme`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -71,7 +72,7 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async getProfilePicture({ commit }, email) {
-        const response = await axios.get(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getUser?email=${email}`, {
+        const response = await axios.get(`${url}/getUser?email=${email}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -81,7 +82,7 @@ const actions = {
         return response.data.profilePictureLink
     },
     async reaction({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/reaction`, body, {
+        await axios.post(`${url}/reaction`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -94,7 +95,7 @@ const actions = {
         }
     },
     async uploadComment({ commit }, body) {
-        await axios.post(`https://cors-anywhere.herokuapp.com/http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createComment`, body, {
+        await axios.post(`${url}/createComment`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
