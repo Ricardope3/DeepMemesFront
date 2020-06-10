@@ -14,7 +14,6 @@ const actions = {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
-                    ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
                 }
             });
             commit('setMemes', response.data);
@@ -27,7 +26,6 @@ const actions = {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Access-Control-Allow-Methods': '*',
-                    ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
                 }
             });
             commit('setMemes', response.data);
@@ -38,7 +36,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         });
         commit('setMemes', response.data);
@@ -48,7 +45,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         });
         commit('setMemes', response.data);
@@ -60,7 +56,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         });
         user.state.user.link = body.profilePictureLink
@@ -71,7 +66,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         });
         commit.lmaoIgnoraEsto
@@ -81,7 +75,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         })
         commit.lmaoIgnoraEsto
@@ -92,7 +85,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         })
         if (body.type === 0 && body.tags) {
@@ -106,7 +98,6 @@ const actions = {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
-                ' Access-Control-Allow-Headers': "Origin, X-Requested-With, Content-Type, Accept, Authorization"
             }
         })
         commit.lmaoIgnoraEsto
