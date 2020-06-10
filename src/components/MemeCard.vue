@@ -95,6 +95,7 @@ export default {
     comment() {
       this.meme.comments.push(this.comentario);
       this.uploadComment({ uidMeme: this.meme.id, comment: this.comentario });
+      this.hide()
     },
     async getImageUrl(email) {
       return await this.getProfilePicture(email);

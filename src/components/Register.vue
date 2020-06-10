@@ -54,12 +54,12 @@
       </p>
     </div>
 
-    <!--<br />
+    <br />
     <br />Log Out
     <button @click="onLogOut">Logout</button>
 
     <br />
-    <br />-->
+    <br />
   </div>
 </template>
 

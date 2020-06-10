@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 md:flex xsm:hidden">
+  <div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 md:flex xsm:hidden" v-if="this.getUser()">
     <div class="flex flex-col w-4/5 mt-2 m-auto">
       <router-link
         to="/"
@@ -16,9 +16,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "leftSideBar",
-  components: {}
+  components: {},
+    methods: {
+    ...mapGetters(["getUser"]),
+  },
 };
 </script>
 

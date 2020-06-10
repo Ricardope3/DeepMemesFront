@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 flex-col md:flex xsm:hidden ">
+<div class="sidebar bg-gray-300 lg:w-1/4 md:w-1/6 flex-col md:flex xsm:hidden "  v-if="this.getUser()" >
     <!--<div class="right-container flex flex-col w-4/5  mt-6 bg-gray-400 rounded-xlg lg:mx-auto sm:mx-3">
         <h3 class="text-center font-bold text-2xl mt-6">Who to Follow?</h3>
         <div class="flex flex-row ml-auto mt-4 w-11/12 lg:justify-start md:justify-center">
@@ -15,7 +15,7 @@
             <a href="#" class="pt-2 lg:inline-block md:hidden ">Carlos Cabello</a>
         </div>
     </div>-->
-    <div class="right-container flex flex-col w-4/5  mt-6 bg-gray-400 rounded-xlg lg:mx-auto sm:mx-3">
+    <div class="right-container flex flex-col w-4/5  mt-6 bg-gray-400 rounded-xlg lg:mx-auto sm:mx-3" v-if="this.getUser()">
         <div class="flex flex-row ml-auto mt-4 w-11/12 lg:justify-start md:justify-center">
             <img class="w-12 rounded-full mr-2" :src="this.profilePicture">
             <a href="#" class="pt-2 hover: lg:inline-block md:hidden">{{ this.email }}</a>
@@ -40,8 +40,8 @@ export default {
     email: "",
   }),
   async beforeMount() {
-    this.email = this.getUser().email;
-    this.profilePicture = await this.getImageUrl(this.email);
+    this.email = this.getUser() ? this.getUser().email : undefined;
+    this.profilePicture = this.getUser() ? await this.getImageUrl(this.email) : undefined;
   },
   methods: {
     ...mapGetters(["getUser"]),

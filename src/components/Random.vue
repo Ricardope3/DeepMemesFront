@@ -15,7 +15,7 @@ export default {
         MemeCard,
   },
     methods : {
-        ...mapActions(['fetchMemes']),
+        ...mapActions(['fetchRandomMemes']),
     },
     computed: {
         ...mapGetters(['allMemes']),
