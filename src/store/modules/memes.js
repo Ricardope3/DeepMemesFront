@@ -1,6 +1,5 @@
 import axios from 'axios';
 import user from './auth'
-import url from './url.js'
 const state = { memes: [], tags: localStorage.tags ? JSON.parse(localStorage.tags) : [] };
 const getters = {
     allMemes: () => state.memes,
