@@ -13,7 +13,7 @@
       <router-link to="/register" tag="div" router class="w-1/3 profile" >
         <img class="w-8 center-image" src="../assets/icons/login.svg" />
       </router-link>
-      <router-link to="/profile" tag="div" router class="w-1/3 profile">
+      <router-link to="/profile" tag="div" router class="w-1/3 profile" v-if="this.getUser()">
         <img class="w-8 center-image" src="../assets/icons/account.svg" />
       </router-link>
     </div>
@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import {  mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
+
 
 export default {
   name: "appBar",
@@ -30,6 +31,7 @@ export default {
     isHidden: true
   }),
   methods: {
+    ...mapGetters(["getUser"]),
     ...mapActions(["logout"]),
     onLogOut() {
       this.logout().then(() => {
