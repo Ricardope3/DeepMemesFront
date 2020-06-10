@@ -10,29 +10,29 @@ const actions = {
         let tagsCSV = ""
         if (state.tags.length === 0) {
             console.log("RANDOM")
-            const response = await axios.get(`http://deepmemes.com.mx/getRandom`);
+            const response = await axios.get(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRandom`);
             commit('setMemes', response.data);
         } else {
             for (let index in state.tags) {
                 tagsCSV += `${state.tags[index]},`
             }
             console.log("TAGS")
-            const response = await axios.get(`http://deepmemes.com.mx/getRelatedTo?tags=${tagsCSV}`);
+            const response = await axios.get(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRelatedTo?tags=${tagsCSV}`);
             commit('setMemes', response.data);
         }
     },
     async fetchRandomMemes({ commit }) {
-        const response = await axios.get("http://deepmemes.com.mx/getRandom");
+        const response = await axios.get("http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getRandom");
         commit('setMemes', response.data);
     },
     async postMeme({ commit }) {
-        const response = await axios.post("http://deepmemes.com.mx/submission");
+        const response = await axios.post("http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/submission");
         commit('setMemes', response.data);
     },
     // { commit },
     async createUserMongo({ commit }, body) {
 
-        await axios.post(`http://deepmemes.com.mx/createUser`, body, {
+        await axios.post(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createUser`, body, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': '*',
@@ -42,16 +42,16 @@ const actions = {
         commit.lmaoIgnoraEsto
     },
     async createMeme({ commit }, body) {
-        await axios.post(`http://deepmemes.com.mx/createMeme`, body);
+        await axios.post(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createMeme`, body);
         commit.lmaoIgnoraEsto
     },
     async getProfilePicture({ commit }, email) {
-        const response = await axios.get(`http://deepmemes.com.mx/getUser?email=${email}`)
+        const response = await axios.get(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/getUser?email=${email}`)
         commit.lmaoIgnoraEsto
         return response.data.profilePictureLink
     },
     async reaction({ commit }, body) {
-        await axios.post(`http://deepmemes.com.mx/reaction`, body)
+        await axios.post(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/reaction`, body)
         if (body.type === 0 && body.tags) {
 
             localStorage.tags = localStorage.tags ? JSON.stringify([...JSON.parse(localStorage.tags),...body.tags]) : JSON.stringify(body.tags)
@@ -59,7 +59,7 @@ const actions = {
         }
     },
     async uploadComment({ commit }, body) {
-        await axios.post(`http://deepmemes.com.mx/createComment`, body)
+        await axios.post(`http://ec2-107-21-32-145.compute-1.amazonaws.com:8080/createComment`, body)
         commit.lmaoIgnoraEsto
     },
 };
