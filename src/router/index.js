@@ -51,15 +51,15 @@ router.beforeEach((to, from, next) => {
   let currentUser = firebase.auth().currentUser
 
   if (requireAuth && !currentUser) {
-    console.log("Registrate compa")
+    // console.log("Registrate compa")
     next('register')
   }
   else if(requireAuth && currentUser){
-    console.log("A wachar memes")
+    // console.log("A wachar memes")
     next()
   }
   else if (guestOnly && currentUser) {
-    console.log("Tu ya tienes cuenta cabron")
+    // console.log("Tu ya tienes cuenta cabron")
     next({name:'memes'})
   }
   next()
